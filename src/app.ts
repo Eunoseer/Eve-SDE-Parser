@@ -11,6 +11,7 @@ const main = async () => {
 
   try {
     args = parseArgs(rawArgs);
+    console.log(args);
   } catch (err) {
     console.error("Arguments Exception:", err.message);
     return;

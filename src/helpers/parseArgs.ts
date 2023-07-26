@@ -3,8 +3,6 @@ import { LANGUAGES } from "../types/languages";
 import fs from "fs";
 
 const parseArgs = (args: string[]): arguments => {
-  console.log(args);
-
   // Check that there is a sufficient number of parameters.
   if (args.length < 3) {
     throw new Error(
@@ -18,11 +16,11 @@ const parseArgs = (args: string[]): arguments => {
   }
 
   // Ensure that there is a valid input file at the given input path.
-  fs.stat(args[0], (err) => {
-    if (err !== null) {
-      throw new Error("Input file does not exist at path.");
-    }
-  });
+  try {
+    fs.statSync(args[0]);
+  } catch (error) {
+    throw new Error("Input file doesn't exist at path.");
+  }
 
   // Ensure that the incoming languages list contains
   const languages = args[2].split(",");
