@@ -29,13 +29,16 @@ const parseArgs = (args: string[]): arguments => {
   });
 
   // Ensure that overwriting is disabled that there is no existing file at the output path.
-  const overwriteEnabled = (args.length > 3 && args[3].toUpperCase() === "TRUE") || false;
+  const overwriteEnabled = (args[3] && args[3].toUpperCase() === "TRUE") || false;
 
-  fs.stat(args[1], (err) => {
-    if (args.length > 2 && args[3].toUpperCase() === "FALSE" && err !== null) {
-      throw new Error("Output file already exists at path and overwriting is disabled.");
+  try {
+    const stats = fs.statSync(args[1]);
+    if (stats && !overwriteEnabled) {
+      throw new Error("");
     }
-  });
+  } catch (err) {
+    throw new Error("Output file already exists at path and overwriting is disabled.");
+  }
 
   // Finally, parse the args if there are no errors and return the object.
   return {
