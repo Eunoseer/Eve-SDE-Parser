@@ -8,8 +8,8 @@ describe("Filter YAML", () => {
   let mock: type;
   let filteredMock: type;
   beforeAll(() => {
-    mock = YAML.parse(fs.readFileSync(`${__dirname}/mocks/caldariShuttle.yaml`, "utf-8")) as type;
-    filteredMock = YAML.parse(fs.readFileSync(`${__dirname}/mocks/caldariShuttleFiltered.yaml`, "utf-8")) as type;
+    mock = YAML.parse(fs.readFileSync(`${__dirname}/mocks/bestower.yaml`, "utf-8")) as type;
+    filteredMock = YAML.parse(fs.readFileSync(`${__dirname}/mocks/bestowerFiltered.yaml`, "utf-8")) as type;
   });
 
   it("should filter languages based on the given language code. e.g. en", async () => {

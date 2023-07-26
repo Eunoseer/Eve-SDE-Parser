@@ -1,0 +1,70 @@
+"1944":
+  basePrice: 1400000
+  capacity: 4800
+  description:
+    en: The Bestower has for decades been used by the Empire as a slave transport,
+      shipping human labor between cultivated planets in Imperial space. As a
+      proof to how reliable this class has been through the years, the Emperor
+      has used an upgraded version of this very same class as transports for the
+      Imperial Treasury. The Bestower has very thick armor and large cargo
+      space.
+  factionID: 500003
+  graphicID: 1064
+  groupID: 28
+  marketGroupID: 85
+  mass: 13500000
+  masteries:
+    "0":
+      - 96
+      - 118
+      - 117
+      - 94
+    "1":
+      - 96
+      - 118
+      - 117
+      - 94
+    "2":
+      - 96
+      - 118
+      - 117
+      - 94
+    "3":
+      - 96
+      - 118
+      - 117
+      - 94
+    "4":
+      - 96
+      - 118
+      - 117
+      - 94
+  metaGroupID: 1
+  name:
+    en: Bestower
+  portionSize: 1
+  published: true
+  raceID: 4
+  radius: 350
+  sofFactionName: amarrbase
+  soundID: 20063
+  traits:
+    roleBonuses:
+      - bonus: 90
+        bonusText:
+          en: reduction to effective distance traveled for jump fatigue
+        importance: 1
+        unitID: 105
+    types:
+      "3343":
+        - bonus: 5
+          bonusText:
+            en: bonus to ship cargo capacity
+          importance: 1
+          unitID: 105
+        - bonus: 5
+          bonusText:
+            en: bonus to ship max velocity
+          importance: 2
+          unitID: 105
+  volume: 260000
