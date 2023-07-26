@@ -5,7 +5,7 @@ const filterYaml = (yaml: type, languages: LANGUAGES[]): type => {
   const typesMap = new Map<number, entity>();
 
   Object.keys(yaml).forEach((key: string) => {
-    const ent: entity = yaml[key];
+    const ent: entity = yaml[Number(key)];
     if (ent.published) {
       const namesMap = new Map<string, string>();
 
@@ -29,8 +29,7 @@ const filterYaml = (yaml: type, languages: LANGUAGES[]): type => {
                 roleBonusTextMap.set(langKey, roleBonus.bonusText[langKey]);
               }
             });
-            ent.traits.roleBonuses[index].bonusText =
-              Object.fromEntries(roleBonusTextMap);
+            ent.traits.roleBonuses[index].bonusText = Object.fromEntries(roleBonusTextMap);
           });
         }
 
@@ -44,8 +43,7 @@ const filterYaml = (yaml: type, languages: LANGUAGES[]): type => {
                   typeBonusTextMap.set(langKey, typeBonus.bonusText[langKey]);
                 }
               });
-              ent.traits.types[bonusKey][index].bonusText =
-                Object.fromEntries(typeBonusTextMap);
+              ent.traits.types[bonusKey][index].bonusText = Object.fromEntries(typeBonusTextMap);
             });
           });
         }

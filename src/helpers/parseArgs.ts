@@ -5,9 +5,7 @@ import fs from "fs";
 const parseArgs = (args: string[]): arguments => {
   // Check that there is a sufficient number of parameters.
   if (args.length < 3) {
-    throw new Error(
-      `Insufficient Parameters. ${args.length} given, 3 expected.`
-    );
+    throw new Error(`Insufficient Parameters. ${args.length} given, 3 expected.`);
   }
 
   // Ensure that the input and output paths are not the same.
@@ -31,14 +29,11 @@ const parseArgs = (args: string[]): arguments => {
   });
 
   // Ensure that overwriting is disabled that there is no existing file at the output path.
-  const overwriteEnabled =
-    (args.length > 3 && args[3].toUpperCase() === "TRUE") || false;
+  const overwriteEnabled = (args.length > 3 && args[3].toUpperCase() === "TRUE") || false;
 
   fs.stat(args[1], (err) => {
     if (args.length > 2 && args[3].toUpperCase() === "FALSE" && err !== null) {
-      throw new Error(
-        "Output file already exists at path and overwriting is disabled."
-      );
+      throw new Error("Output file already exists at path and overwriting is disabled.");
     }
   });
 

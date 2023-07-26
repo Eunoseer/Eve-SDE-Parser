@@ -32,12 +32,7 @@ describe("parse arguments", () => {
       languages: [validLanguages],
     };
 
-    const response = parseArgs([
-      validInputPath,
-      validOutputPath,
-      validLanguages,
-      validOverwrite.toString(),
-    ]);
+    const response = parseArgs([validInputPath, validOutputPath, validLanguages, validOverwrite.toString()]);
 
     expect(response).toEqual(mockArgsResponse);
   });
@@ -47,63 +42,30 @@ describe("parse arguments", () => {
   });
 
   it("should validate the input and output paths are not the same", () => {
-    expect(() =>
-      parseArgs([
-        validInputPath,
-        validInputPath,
-        validLanguages,
-        validOverwrite.toString(),
-      ])
-    ).toThrow();
+    expect(() => parseArgs([validInputPath, validInputPath, validLanguages, validOverwrite.toString()])).toThrow();
   });
 
   it("should validate that the input file and path exist", () => {
-    expect(() =>
-      parseArgs([
-        invalidInputPath,
-        validOutputPath,
-        validLanguages,
-        validOverwrite.toString(),
-      ])
-    ).toThrow();
+    expect(() => parseArgs([invalidInputPath, validOutputPath, validLanguages, validOverwrite.toString()])).toThrow();
   });
 
   it("should validate that the language codes provided are valid", () => {
     expect(() => {
-      parseArgs([
-        validInputPath,
-        validOutputPath,
-        invalidLanguages,
-        validOverwrite.toString(),
-      ]);
+      parseArgs([validInputPath, validOutputPath, invalidLanguages, validOverwrite.toString()]);
     }).toThrow();
   });
 
   it("should prevent overwriting if the overwrite flag is false and an output file exists", () => {
-    expect(() => {
-      parseArgs([
-        validInputPath,
-        validOutputPath,
-        invalidLanguages,
-        invalidOverwriteFalse.toString(),
-      ]);
-    }).toThrow();
+    expect(() =>
+      parseArgs([validInputPath, validOutputPath, invalidLanguages, invalidOverwriteFalse.toString()])
+    ).toThrow();
   });
 
   it("should prevent overwriting if an invalid overwrite flag is provided and an output file exists", () => {
-    expect(() => {
-      parseArgs([
-        validInputPath,
-        validOutputPath,
-        invalidLanguages,
-        invalidOverwriteFake,
-      ]);
-    }).toThrow();
+    expect(() => parseArgs([validInputPath, validOutputPath, invalidLanguages, invalidOverwriteFake])).toThrow();
   });
 
   it("should prevent overwriting if an overwrite flag is not provided and an output file exists", () => {
-    expect(() => {
-      parseArgs([validInputPath, validOutputPath, invalidLanguages]);
-    }).toThrow();
+    expect(() => parseArgs([validInputPath, validOutputPath, invalidLanguages])).toThrow();
   });
 });
