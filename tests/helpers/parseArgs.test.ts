@@ -1,5 +1,5 @@
-import parseArgs from "../../src/helpers/parseArgs";
 import fs from "fs";
+import { parseArgs } from "../../src/helpers";
 import { arguments } from "../../src/types/args";
 import { LANGUAGES } from "../../src/types/languages";
 import {
@@ -12,7 +12,7 @@ import {
 
 const validInputPath = `${__dirname}/testinput.yaml`;
 const validOutputPath = `${__dirname}/testoutput.yaml`;
-const validLanguages = LANGUAGES.en;
+const validLanguages = LANGUAGES.EN;
 const validOverwrite = true;
 
 const invalidInputPath = `${__dirname}/fake.yaml`;

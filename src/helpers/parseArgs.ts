@@ -9,7 +9,7 @@ import {
 } from "../types/errors";
 import { LANGUAGES } from "../types/languages";
 
-const parseArgs = (args: string[]): arguments => {
+export const parseArgs = (args: string[]): arguments => {
   // Check that there is a sufficient number of parameters.
   if (args.length < 3) {
     throw InvalidArgsLengthException;
@@ -55,5 +55,3 @@ const parseArgs = (args: string[]): arguments => {
     overwrite: overwriteEnabled,
   };
 };
-
-export default parseArgs;

@@ -2,7 +2,7 @@ import YAML from "yaml";
 import fsPromise from "fs/promises";
 import { type } from "../types/entity";
 
-const parseYaml = async (path: string): Promise<type> => {
+export const parseYaml = async (path: string): Promise<type> => {
   let parsedYaml: type;
   let inputFile: string = await fsPromise.readFile(path, "utf-8");
 
@@ -15,5 +15,3 @@ const parseYaml = async (path: string): Promise<type> => {
 
   return parsedYaml;
 };
-
-export default parseYaml;

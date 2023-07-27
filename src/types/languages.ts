@@ -1,9 +1,9 @@
 export enum LANGUAGES {
-  "de" = "de",
-  "en" = "en",
-  "es" = "es",
-  "fr" = "fr",
-  "ja" = "ja",
-  "ru" = "ru",
-  "zh" = "zh",
+  "DE" = "de",
+  "EN" = "en",
+  "ES" = "es",
+  "FR" = "fr",
+  "JA" = "ja",
+  "RU" = "ru",
+  "ZH" = "zh",
 }

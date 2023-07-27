@@ -1,7 +1,4 @@
-import filterYaml from "./helpers/filterYaml";
-import parseArgs from "./helpers/parseArgs";
-import parseYaml from "./helpers/parseYaml";
-import writeYaml from "./helpers/writeYaml";
+import { filterYaml, parseArgs, parseYaml, writeYaml } from "./helpers";
 import { arguments } from "./types/args";
 
 const main = async () => {

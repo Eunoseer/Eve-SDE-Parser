@@ -1,7 +1,7 @@
 import { bonus, entity, type } from "../types/entity";
 import { LANGUAGES } from "../types/languages";
 
-const filterYaml = (yaml: type, languages: LANGUAGES[]): type => {
+export const filterYaml = (yaml: type, languages: LANGUAGES[]): type => {
   const typesMap = new Map<number, entity>();
 
   Object.keys(yaml).forEach((key: string) => {
@@ -61,5 +61,3 @@ const filterYaml = (yaml: type, languages: LANGUAGES[]): type => {
 
   return Object.fromEntries(typesMap);
 };
-
-export default filterYaml;

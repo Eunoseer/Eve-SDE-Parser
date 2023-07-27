@@ -1,6 +1,6 @@
 import fs from "fs";
 import YAML from "yaml";
-import filterYaml from "../../src/helpers/filterYaml";
+import { filterYaml } from "../../src/helpers";
 import { LANGUAGES } from "../../src/types/languages";
 import { type } from "../../src/types/entity";
 
@@ -13,7 +13,7 @@ describe("Filter YAML", () => {
   });
 
   it("should filter languages based on the given language code. e.g. en", async () => {
-    const langKeys = [LANGUAGES.en];
+    const langKeys = [LANGUAGES.EN];
     const response = filterYaml(mock, langKeys);
 
     expect(response).toEqual(filteredMock);
