@@ -2,6 +2,13 @@ import parseArgs from "../../src/helpers/parseArgs";
 import fs from "fs";
 import { arguments } from "../../src/types/args";
 import { LANGUAGES } from "../../src/types/languages";
+import {
+  InputOutputMatchException,
+  InvalidArgsLengthException,
+  InvalidInputPathException,
+  InvalidLanguageException,
+  OutputFileExistsException,
+} from "../../src/types/errors";
 
 const validInputPath = `${__dirname}/testinput.yaml`;
 const validOutputPath = `${__dirname}/testoutput.yaml`;
@@ -39,42 +46,40 @@ describe("parse arguments", () => {
 
   it("should expect a minimum of 3 parameters", () => {
     const args = [validInputPath, validOutputPath];
-    expect(() => parseArgs(args)).toThrowError(`Insufficient Parameters. ${args.length} given, 3 expected.`);
+    expect(() => parseArgs(args)).toThrowError(InvalidArgsLengthException);
   });
 
   it("should validate the input and output paths are not the same", () => {
     expect(() => parseArgs([validInputPath, validInputPath, validLanguages, validOverwrite.toString()])).toThrowError(
-      "Input and Output paths cannot be the same."
+      InputOutputMatchException
     );
   });
 
   it("should validate that the input file and path exist", () => {
     expect(() =>
       parseArgs([invalidInputPath, validOutputPath, validLanguages, validOverwrite.toString()])
-    ).toThrowError("Input file doesn't exist at path.");
+    ).toThrowError(InvalidInputPathException);
   });
 
   it("should validate that the language codes provided are valid", () => {
     expect(() => {
       parseArgs([validInputPath, validOutputPath, invalidLanguages, validOverwrite.toString()]);
-    }).toThrowError("Invalid language code detected.");
+    }).toThrowError(InvalidLanguageException);
   });
 
   it("should prevent overwriting if the overwrite flag is false and an output file exists", () => {
     expect(() =>
       parseArgs([validInputPath, validOutputPath, validLanguages, invalidOverwriteFalse.toString()])
-    ).toThrowError("Output file already exists at path and overwriting is disabled.");
+    ).toThrowError(OutputFileExistsException);
   });
 
   it("should prevent overwriting if an invalid overwrite flag is provided and an output file exists", () => {
     expect(() => parseArgs([validInputPath, validOutputPath, validLanguages, invalidOverwriteFake])).toThrowError(
-      "Output file already exists at path and overwriting is disabled."
+      OutputFileExistsException
     );
   });
 
   it("should prevent overwriting if an overwrite flag is not provided and an output file exists", () => {
-    expect(() => parseArgs([validInputPath, validOutputPath, validLanguages])).toThrowError(
-      "Output file already exists at path and overwriting is disabled."
-    );
+    expect(() => parseArgs([validInputPath, validOutputPath, validLanguages])).toThrowError(OutputFileExistsException);
   });
 });

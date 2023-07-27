@@ -1,30 +1,37 @@
-import { arguments } from "../types/args";
-import { LANGUAGES } from "../types/languages";
 import fs from "fs";
+import { arguments } from "../types/args";
+import {
+  InvalidLanguageException,
+  InvalidArgsLengthException,
+  InputOutputMatchException,
+  InvalidInputPathException,
+  OutputFileExistsException,
+} from "../types/errors";
+import { LANGUAGES } from "../types/languages";
 
 const parseArgs = (args: string[]): arguments => {
   // Check that there is a sufficient number of parameters.
   if (args.length < 3) {
-    throw new Error(`Insufficient Parameters. ${args.length} given, 3 expected.`);
+    throw InvalidArgsLengthException;
   }
 
   // Ensure that the input and output paths are not the same.
   if (args[0] === args[1]) {
-    throw new Error("Input and Output paths cannot be the same.");
+    throw InputOutputMatchException;
   }
 
   // Ensure that there is a valid input file at the given input path.
   try {
     fs.statSync(args[0]);
   } catch (error) {
-    throw new Error("Input file doesn't exist at path.");
+    throw InvalidInputPathException;
   }
 
   // Ensure that the incoming languages list contains
   const languages = args[2].split(",");
   languages.forEach((lang: string) => {
     if (!Object.values(LANGUAGES).includes(lang as LANGUAGES)) {
-      throw new Error("Invalid language code detected.");
+      throw InvalidLanguageException;
     }
   });
 
@@ -37,7 +44,7 @@ const parseArgs = (args: string[]): arguments => {
       throw new Error("");
     }
   } catch (err) {
-    throw new Error("Output file already exists at path and overwriting is disabled.");
+    throw OutputFileExistsException;
   }
 
   // Finally, parse the args if there are no errors and return the object.
