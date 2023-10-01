@@ -1,1 +1,3 @@
-export const InvalidLanguageException = new Error("Invalid language code detected.");
+export const InvalidLanguageException = new Error(
+  'Invalid language code detected.'
+);

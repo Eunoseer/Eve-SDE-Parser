@@ -1,5 +1,5 @@
-import { filterYaml, parseArgs, parseYaml, writeYaml } from "./helpers";
-import { arguments } from "./types/args";
+import { filterYaml, parseArgs, parseYaml, writeYaml } from './helpers';
+import { arguments } from './types/args';
 
 const main = async () => {
   //ignore the first two arguments as they are not used by us.
@@ -10,7 +10,7 @@ const main = async () => {
     args = parseArgs(rawArgs);
     console.log(args);
   } catch (err) {
-    console.error("Arguments Exception:", err.message);
+    console.error('Arguments Exception:', err.message);
     return;
   }
 

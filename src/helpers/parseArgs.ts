@@ -1,13 +1,13 @@
-import fs from "fs";
-import { arguments } from "../types/args";
+import fs from 'fs';
+import { arguments } from '../types/args';
 import {
   InvalidLanguageException,
   InvalidArgsLengthException,
   InputOutputMatchException,
   InvalidInputPathException,
   OutputFileExistsException,
-} from "../types/errors";
-import { LANGUAGES } from "../types/languages";
+} from '../types/errors';
+import { LANGUAGES } from '../types/languages';
 
 export const parseArgs = (args: string[]): arguments => {
   // Check that there is a sufficient number of parameters.
@@ -28,7 +28,7 @@ export const parseArgs = (args: string[]): arguments => {
   }
 
   // Ensure that the incoming languages list contains
-  const languages = args[2].split(",");
+  const languages = args[2].split(',');
   languages.forEach((lang: string) => {
     if (!Object.values(LANGUAGES).includes(lang as LANGUAGES)) {
       throw InvalidLanguageException;
@@ -36,12 +36,13 @@ export const parseArgs = (args: string[]): arguments => {
   });
 
   // Ensure that overwriting is disabled that there is no existing file at the output path.
-  const overwriteEnabled = (args[3] && args[3].toUpperCase() === "TRUE") || false;
+  const overwriteEnabled =
+    (args[3] && args[3].toUpperCase() === 'TRUE') || false;
 
   try {
     const stats = fs.statSync(args[1]);
     if (stats && !overwriteEnabled) {
-      throw new Error("");
+      throw new Error('');
     }
   } catch (err) {
     throw OutputFileExistsException;

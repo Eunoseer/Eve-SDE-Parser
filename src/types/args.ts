@@ -1,4 +1,4 @@
-import { LANGUAGES } from "./languages";
+import { LANGUAGES } from './languages';
 
 export interface arguments {
   inputPath: string;

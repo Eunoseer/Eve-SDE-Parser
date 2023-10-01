@@ -10,7 +10,6 @@
     "lint": "eslint --ignore-path .gitignore --ext .ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
-  "author": "Aiden Payne",
   "license": "GPLv3",
   "devDependencies": {
     "@types/jest": "^29.5.3",

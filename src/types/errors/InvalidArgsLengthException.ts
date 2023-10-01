@@ -1,1 +1,3 @@
-export const InvalidArgsLengthException = new Error("Insufficient parameters submitted.");
+export const InvalidArgsLengthException = new Error(
+  'Insufficient parameters submitted.'
+);

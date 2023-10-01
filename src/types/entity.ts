@@ -6,7 +6,7 @@ export type masteries = {
   [key: string]: number[];
 };
 
-export type type = {
+export type entityParent = {
   [key: number]: entity;
 };
 
